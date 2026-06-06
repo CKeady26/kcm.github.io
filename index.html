@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCM Landscaping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #2d6a1f;
+    --green-dark: #1a3f12;
+    --green-light: #4a9e35;
+    --green-pale: #eaf3de;
+    --green-mid: #3b6d11;
+    --white: #ffffff;
+    --off-white: #f7f9f4;
+    --text: #111a0d;
+    --text-muted: #4a5c42;
+    --accent: #8bc34a;
+    --border: #c8ddb8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.04em;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo span {
+    display: inline-block;
+    width: 28px; height: 28px;
+    background: var(--green);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .nav-logo span::after {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px;
+    width: 16px; height: 16px;
+    border-radius: 50% 50% 50% 0;
+    background: var(--accent);
+    transform: rotate(-45deg);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green) !important;
+    color: white !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 4px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--green-dark) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+  }
+
+  .hero-left {
+    background: var(--green-dark);
+    padding: 6rem 4rem 6rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 60px solid rgba(139,195,74,0.12);
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 40px solid rgba(139,195,74,0.08);
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(139,195,74,0.15);
+    border: 1px solid rgba(139,195,74,0.3);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    color: white;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--green-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: #9ed45a; transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.07); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .stat-lbl {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .hero-right {
+    background: var(--off-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+  }
+
+  .hero-scene {
+    width: 100%;
+    max-width: 440px;
+    position: relative;
+  }
+
+  /* SVG landscaping illustration */
+  .scene-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    overflow: visible;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 7rem 5rem;
+    background: var(--white);
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    color: var(--green-dark);
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+    font-weight: 300;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .service-card:hover { background: var(--green-pale); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--green-pale);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-card:hover .service-icon { background: rgba(255,255,255,0.8); }
+
+  .service-icon svg { width: 28px; height: 28px; }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--green-dark);
+    letter-spacing: 0.03em;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .service-link {
+    color: var(--green);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s;
+  }
+
+  .service-card:hover .service-link { gap: 10px; }
+
+  /* WHY US */
+  .why {
+    background: var(--green-dark);
+    padding: 7rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .why-left .section-label { color: var(--accent); }
+  .why-left .section-h2 { color: white; }
+  .why-left .section-sub { color: rgba(255,255,255,0.65); margin-bottom: 0; }
+
+  .why-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .why-feat {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .why-dot {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(139,195,74,0.15);
+    border: 1px solid rgba(139,195,74,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .why-feat-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .why-feat-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* FORM */
+  .contact {
+    padding: 7rem 5rem;
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info .section-sub { margin-bottom: 2.5rem; }
+
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .contact-item-icon {
+    width: 40px; height: 40px;
+    background: var(--green-pale);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-item-icon svg { width: 20px; height: 20px; color: var(--green); }
+
+  .contact-item-text strong {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+
+  .contact-item-text span {
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  /* FORM */
+  .form-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--green-dark);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--green);
+    background: white;
+  }
+
+  textarea { resize: vertical; min-height: 110px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--green);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+  }
+
+  /* TESTIMONIAL STRIP */
+  .testimonials {
+    padding: 5rem 5rem;
+    background: var(--white);
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testi-card {
+    background: var(--off-white);
+    border-radius: 8px;
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .testi-stars {
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .testi-text {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .testi-author {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--green-dark);
+  }
+
+  .testi-loc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.6);
+    padding: 2.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: white;
+    letter-spacing: 0.04em;
+  }
+
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  footer a:hover { color: white; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * { animation: fadeUp 0.7s ease both; }
+  .hero-left .hero-tag { animation-delay: 0.1s; }
+  .hero-left .hero-h1 { animation-delay: 0.22s; }
+  .hero-left .hero-sub { animation-delay: 0.34s; }
+  .hero-left .hero-actions { animation-delay: 0.46s; }
+  .hero-left .hero-stats { animation-delay: 0.58s; }
+
+  /* Success message */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .form-success.show { display: block; }
+
+  .form-success-icon {
+    width: 60px; height: 60px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .form-success-icon svg { width: 30px; height: 30px; color: var(--green); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 280px; }
+    .hero-left { padding: 4rem 2rem; }
+    .services, .testimonials { padding: 4rem 1.5rem; }
+    .services-grid, .testi-grid { grid-template-columns: 1fr; }
+    .why { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .contact { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span aria-hidden="true"></span>
+    KCM
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-h1">Your Yard,<br><em>Perfected.</em></h1>
+    <p class="hero-sub">Professional tree trimming, precision edging, and fresh mulching — transforming outdoor spaces into properties worth showing off.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">View Our Work →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-scene">
+        <!-- Landscaping scene illustration -->
+        <svg class="scene-svg" viewBox="0 0 440 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Lush landscaped garden illustration">
+          <!-- Sky -->
+          <rect width="440" height="360" fill="#f0f8e8" rx="12"/>
+          <!-- Sun glow -->
+          <circle cx="370" cy="60" r="50" fill="#fef9e7" opacity="0.8"/>
+          <circle cx="370" cy="60" r="34" fill="#fdeea0" opacity="0.6"/>
+          <circle cx="370" cy="60" r="20" fill="#f9d835" opacity="0.7"/>
+          <!-- Clouds -->
+          <ellipse cx="80" cy="70" rx="45" ry="18" fill="white" opacity="0.85"/>
+          <ellipse cx="110" cy="58" rx="32" ry="22" fill="white" opacity="0.85"/>
+          <ellipse cx="55" cy="65" rx="28" ry="16" fill="white" opacity="0.85"/>
+          <ellipse cx="220" cy="50" rx="35" ry="14" fill="white" opacity="0.7"/>
+          <ellipse cx="248" cy="42" rx="24" ry="18" fill="white" opacity="0.7"/>
+          <!-- Ground -->
+          <rect x="0" y="230" width="440" height="130" rx="0" fill="#2d6a1f"/>
+          <rect x="0" y="230" width="440" height="12" fill="#3b8024" rx="0"/>
+          <!-- Mulch beds -->
+          <ellipse cx="120" cy="242" rx="80" ry="18" fill="#7B4B2A" opacity="0.6"/>
+          <ellipse cx="320" cy="242" rx="80" ry="18" fill="#7B4B2A" opacity="0.6"/>
+          <!-- House -->
+          <rect x="140" y="130" width="160" height="110" fill="#f5f0e8" rx="2"/>
+          <rect x="128" y="98" width="184" height="46" fill="#2d6a1f" rx="2"/>
+          <!-- Roof triangle -->
+          <polygon points="120,140 220,90 320,140" fill="#1a3f12"/>
+          <!-- Door -->
+          <rect x="192" y="190" width="36" height="50" fill="#4a3728" rx="2"/>
+          <circle cx="225" cy="215" r="3" fill="#c8a96e"/>
+          <!-- Windows -->
+          <rect x="150" y="155" width="38" height="32" fill="#b8d4f0" rx="2"/>
+          <rect x="252" y="155" width="38" height="32" fill="#b8d4f0" rx="2"/>
+          <line x1="169" y1="155" x2="169" y2="187" stroke="white" stroke-width="1.5"/>
+          <line x1="150" y1="171" x2="188" y2="171" stroke="white" stroke-width="1.5"/>
+          <line x1="271" y1="155" x2="271" y2="187" stroke="white" stroke-width="1.5"/>
+          <line x1="252" y1="171" x2="290" y2="171" stroke="white" stroke-width="1.5"/>
+          <!-- Path -->
+          <path d="M 204 240 L 196 290 L 244 290 L 236 240" fill="#d4c9b0" opacity="0.9"/>
+          <!-- Big tree left -->
+          <rect x="44" y="175" width="12" height="70" fill="#5c3a1e" rx="2"/>
+          <ellipse cx="50" cy="148" rx="40" ry="45" fill="#1a5c10"/>
+          <ellipse cx="35" cy="162" rx="28" ry="32" fill="#1e6e12"/>
+          <ellipse cx="65" cy="155" rx="30" ry="35" fill="#2d6a1f"/>
+          <ellipse cx="50" cy="130" rx="32" ry="38" fill="#3b8024"/>
+          <!-- Big tree right -->
+          <rect x="380" y="165" width="12" height="80" fill="#5c3a1e" rx="2"/>
+          <ellipse cx="386" cy="140" rx="40" ry="48" fill="#1a5c10"/>
+          <ellipse cx="370" cy="155" rx="30" ry="36" fill="#1e6e12"/>
+          <ellipse cx="400" cy="148" rx="28" ry="34" fill="#2d6a1f"/>
+          <ellipse cx="386" cy="120" rx="34" ry="40" fill="#3b8024"/>
+          <!-- Shrubs -->
+          <ellipse cx="115" cy="232" rx="32" ry="22" fill="#4a9e35"/>
+          <ellipse cx="100" cy="236" rx="24" ry="18" fill="#3b8024"/>
+          <ellipse cx="130" cy="233" rx="26" ry="19" fill="#56b83f"/>
+          <ellipse cx="325" cy="232" rx="32" ry="22" fill="#4a9e35"/>
+          <ellipse cx="310" cy="236" rx="24" ry="18" fill="#3b8024"/>
+          <ellipse cx="340" cy="233" rx="26" ry="19" fill="#56b83f"/>
+          <!-- Edging strip -->
+          <rect x="0" y="226" width="440" height="6" fill="#c8a030" opacity="0.55" rx="1"/>
+          <!-- Mulch dots texture -->
+          <circle cx="90" cy="245" r="3" fill="#5c3a1e" opacity="0.5"/>
+          <circle cx="110" cy="250" r="2" fill="#5c3a1e" opacity="0.5"/>
+          <circle cx="130" cy="244" r="3" fill="#5c3a1e" opacity="0.4"/>
+          <circle cx="150" cy="248" r="2" fill="#5c3a1e" opacity="0.5"/>
+          <circle cx="290" cy="244" r="3" fill="#5c3a1e" opacity="0.5"/>
+          <circle cx="310" cy="249" r="2" fill="#5c3a1e" opacity="0.5"/>
+          <circle cx="330" cy="244" r="3" fill="#5c3a1e" opacity="0.4"/>
+          <circle cx="350" cy="247" r="2" fill="#5c3a1e" opacity="0.5"/>
+          <!-- Checkmark badge -->
+          <circle cx="370" cy="290" r="30" fill="#8bc34a"/>
+          <path d="M 357 290 L 366 299 L 383 280" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-h2">Our Services</h2>
+  <p class="section-sub">Every property is different. We bring the right tools, expertise, and care to make yours stand out.</p>
+
+  <div class="services-grid">
+    <!-- Tree & Shrub -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 28 28" fill="none" stroke="#2d6a1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 24V14"/>
+          <path d="M9 18L14 14l5 4"/>
+          <ellipse cx="14" cy="10" rx="7" ry="8" fill="#eaf3de" stroke="#2d6a1f"/>
+          <path d="M10 8.5Q14 4 18 8.5"/>
+        </svg>
+      </div>
+      <div class="service-name">Tree &amp; Shrub Trimming</div>
+      <p class="service-desc">Expert pruning to promote healthy growth, improve structure, and keep your trees and shrubs looking their best season after season.</p>
+    </div>
+    <!-- Edging -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 28 28" fill="none" stroke="#2d6a1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 20h20"/>
+          <path d="M4 20c2-3 6-5 10-5s8 2 10 5" fill="#eaf3de" stroke="#2d6a1f"/>
+          <rect x="12" y="6" width="4" height="10" rx="1"/>
+          <path d="M10 6h8"/>
+        </svg>
+      </div>
+      <div class="service-name">Precision Edging</div>
+      <p class="service-desc">Clean, defined edges along driveways, sidewalks, and garden beds give your property a polished, maintained look that neighbors notice.</p>
+    </div>
+    <!-- Mulching -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 28 28" fill="none" stroke="#2d6a1f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 20h16M8 17h12M10 14h8"/>
+          <circle cx="14" cy="8" r="4" fill="#eaf3de" stroke="#2d6a1f"/>
+          <path d="M11 8c1-2 3-3 3-3s2 1 3 3"/>
+        </svg>
+      </div>
+      <div class="service-name">Mulching</div>
+      <p class="service-desc">Fresh mulch applied evenly around beds retains moisture, suppresses weeds, regulates soil temperature, and adds instant curb appeal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-left">
+    <div class="section-label">Why KCM</div>
+    <h2 class="section-h2">We Show Up,<br>We Deliver.</h2>
+    <p class="section-sub">No upsells. No no-shows. Just honest work by a crew that takes pride in your property.</p>
+  </div>
+  <div class="why-features">
+    <div class="why-feat">
+      <div class="why-dot">01</div>
+      <div>
+        <div class="why-feat-title">Same-week scheduling</div>
+        <p class="why-feat-desc">Request a quote and we'll be on-site within the week. We work around your schedule, not ours.</p>
+      </div>
+    </div>
+    <div class="why-feat">
+      <div class="why-dot">02</div>
+      <div>
+        <div class="why-feat-title">Transparent, flat pricing</div>
+        <p class="why-feat-desc">You'll know exactly what you're paying before we start. No surprise charges, ever.</p>
+      </div>
+    </div>
+    <div class="why-feat">
+      <div class="why-dot">03</div>
+      <div>
+        <div class="why-feat-title">Satisfaction guaranteed</div>
+        <p class="why-feat-desc">If you're not happy with the result, we come back and fix it — free of charge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KCM Landscaping</div>
+  <div><a href="#services">Services</a> &nbsp;·&nbsp; <a href="#why">Why Us</a></div>
+  <div>© 2025 KCM Landscaping. All rights reserved.</div>
+</footer>
+
+
+</body>
+</html>
